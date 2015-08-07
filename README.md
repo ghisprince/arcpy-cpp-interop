@@ -1,18 +1,23 @@
-
 ArcGIS geoprocessing tools have rich support for messaging and reporting
-progress within the ArcGIS family of applications.  Within python script
-this coding patterns are well established and documented.
+progress within the ArcGIS family of applications.  With script tools 
+implemented with python the coding patterns are well established and 
+documented.
 
-The code within this repo shows how to do this from a c++ dll, as well 
-as running code within the dll if the user has cancelled the operation.
+The code within this repo shows how to call from python to a C/C++ 
+library (dll) and have the dll drive the ArcGIS application progressor, 
+pass messages to the app, and query if the user has cancelled the 
+operation (in order to cancel processing and gracefully exit the dll).
+
 
 ### Basic flow of code
+
 1. gptool_script.py calls my_cpp_function in the dll with two arguments
   1. a string to show passing argument from python to the dll
   1. a callback function for the dll to push feedback to python
 1. my-lib.dll my_cpp_function calls back into python to 
   1. push messages (strings)
   1. move the progress bar
+  1. query if arcpy.env.isCancelled is True (user has cancelled operation)
 
 
 ### To use with ArcMap
@@ -42,27 +47,27 @@ as running code within the dll if the user has cancelled the operation.
   1. run the 'cpp interop example' tool (note progress & messaging)
 
 
-[Tool progress and messages!](tool.png?raw=True )
+![Tool progress and messages](tool.png?raw=True )
 
-Notes
-At ArcGIS 10.4 (and Pro 1.1) the [arcpy.env.autoCancelling] and 
-[arcpy.env.isCancelled] have been added. By setting 
+### Notes
+At Pro 1.1 (planned for ArcGIS 10.4) the arcpy.env.autoCancelling and 
+arcpy.env.isCancelled have been added. By setting 
 ```arcpy.env.autoCancelling = False``` the code in the dll is able to 
 run code based on the user having hit *cancel* on the operation
 ```arcpy.env.isCancelled = True``` .
 
-At versions preceding those mentioned above, there is no easy querying
-to determine if user has cancelled the operation, but the rest of the
-code, showing messaging, progress, are valid.
+Before Pro 1.1/ArcGIS 104, the properties mentioned above are missing 
+progress and messaging will work, but the callback will fail if user 
+has cancelled the tool, this failure with the Callback could be trapped
+for as indication of a cancel situation.
 
 
 Reference
 ---------
 * [Python ctypes documentation]
 * [The extern "C" solution]
+* [jasonbot / devsummit2014 repo]
 
-
-[arcpy.env.autoCancelling]:http://pro.arcgis.com/en/pro-app/tool-reference/environment-settings/autoCancelling.htm
-[arcpy.env.isCancelled]:http://pro.arcgis.com/en/pro-app/tool-reference/environment-settings/isCancelled.htm
 [Python ctypes documentation]:https://docs.python.org/2/library/ctypes.html
 [The extern "C" solution]:http://www.tldp.org/HOWTO/C++-dlopen/thesolution.html
+[jasonbot / devsummit2014 repo]:https://github.com/jasonbot/devsummit2014
