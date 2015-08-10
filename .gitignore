@@ -26,3 +26,11 @@
 *.exe
 *.out
 *.app
+
+# Visual Studio Files
+*.opensdf
+*.sdf
+*.ncb
+*.suo
+[Dd]ebug*/
+[Rr]elease*/
