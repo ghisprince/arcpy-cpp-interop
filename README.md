@@ -9,7 +9,9 @@ pass messages to the app, and query if the user has cancelled the
 operation (in order to cancel processing and gracefully exit the dll).
 
 
-### Basic flow of code
+
+Basic flow of code
+------------------
 
 1. gptool_script.py calls my_cpp_function in the dll with two arguments
   1. a string to show passing argument from python to the dll
@@ -20,9 +22,11 @@ operation (in order to cancel processing and gracefully exit the dll).
   1. query if arcpy.env.isCancelled is True (user has cancelled operation)
 
 
-### To use with ArcMap
 
-1. open my-lib.sln
+To use with ArcMap
+------------------
+
+1. open my-lib.sln with Visual Studio
 1. in the BUILD menu, select *Configuration Manager...*
   1. set the *Active solution configuration* to Release 
   1. set the *Active solution platform* to Win32
@@ -34,9 +38,10 @@ operation (in order to cancel processing and gracefully exit the dll).
   
 
 
-### To use with ArcGIS Pro
+To use with ArcGIS Pro
+----------------------
 
-1. open my-lib.sln using Visual Studio
+1. open my-lib.sln with Visual Studio
 1. in the BUILD menu, select *Configuration Manager...* 
   1. set the *Active solution configuration* to Release 
   1. set the *Active solution platform* to x64
@@ -47,9 +52,11 @@ operation (in order to cancel processing and gracefully exit the dll).
   1. run the 'cpp interop example' tool (note progress & messaging)
 
 
+
 ![Tool progress and messages](tool.png?raw=True )
 
-### Notes
+Notes
+-----
 At Pro 1.1 (planned for ArcGIS 10.4) the arcpy.env.autoCancelling and 
 arcpy.env.isCancelled have been added. By setting 
 ```arcpy.env.autoCancelling = False``` the code in the dll is able to 
@@ -67,7 +74,9 @@ Reference
 * [Python ctypes documentation]
 * [The extern "C" solution]
 * [jasonbot / devsummit2014 repo]
+* [ArcGIS doc Calling a DLL from a script tool]
 
 [Python ctypes documentation]:https://docs.python.org/2/library/ctypes.html
 [The extern "C" solution]:http://www.tldp.org/HOWTO/C++-dlopen/thesolution.html
 [jasonbot / devsummit2014 repo]:https://github.com/jasonbot/devsummit2014
+* [ArcGIS doc Calling a DLL from a script tool]:http://desktop.arcgis.com/en/desktop/latest/analyze/creating-tools/calling-a-dll-from-a-script-tool.htm
