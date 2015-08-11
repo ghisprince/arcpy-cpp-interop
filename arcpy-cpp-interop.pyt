@@ -17,7 +17,7 @@ class cppInteropExample(object):
         """Define the tool (tool name is the name of the class)."""
         self.label = "cpp interop example"
         self.description = "Shows progress, messages, and cancelling"
-        self.canRunInBackground = True
+        self.canRunInBackground = False
 
     def getParameterInfo(self):
         """Define parameter definitions"""
