@@ -79,4 +79,4 @@ Reference
 [Python ctypes documentation]:https://docs.python.org/2/library/ctypes.html
 [The extern "C" solution]:http://www.tldp.org/HOWTO/C++-dlopen/thesolution.html
 [jasonbot / devsummit2014 repo]:https://github.com/jasonbot/devsummit2014
-* [ArcGIS doc Calling a DLL from a script tool]:http://desktop.arcgis.com/en/desktop/latest/analyze/creating-tools/calling-a-dll-from-a-script-tool.htm
+[ArcGIS doc Calling a DLL from a script tool]:http://desktop.arcgis.com/en/desktop/latest/analyze/creating-tools/calling-a-dll-from-a-script-tool.htm
